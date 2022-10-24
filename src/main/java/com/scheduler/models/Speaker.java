@@ -1,5 +1,7 @@
 package com.scheduler.models;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -13,6 +15,9 @@ public class Speaker {
     private String title;
     private String company;
     private String speaker_bio;
+    @Lob
+    @Type(type = "org.hibernate.type.BinaryType")
+    private byte[] speaker_photo;
     @ManyToMany(mappedBy = "speakers")
     private List<Session> sessions;
 
@@ -74,5 +79,13 @@ public class Speaker {
 
     public void setSpeaker_bio(String speaker_bio) {
         this.speaker_bio = speaker_bio;
+    }
+
+    public byte[] getSpeaker_photo() {
+        return speaker_photo;
+    }
+
+    public void setSpeaker_photo(byte[] speaker_photo) {
+        this.speaker_photo = speaker_photo;
     }
 }
